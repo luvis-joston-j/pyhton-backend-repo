@@ -35,10 +35,9 @@ jobs:
       uses: webfactory/ssh-agent@v0.9.0
       with:
         ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
-
     - name: Deploy to EC2
       run: |
-        ssh -i "pem.pem" -o StrictHostKeyChecking=no ubuntu@ec2-54-158-172-115.compute-1.amazonaws.com<< 'EOF'
-        scp -i "pem.pem" -o StrictHostKeyChecking=no docker-compose.yml ubuntu@54.158.172.115:/home/ubuntu
-        sudo docker-compose -f ~/docker-compose.yml up -d 
+        scp -i "pem.pem" -o StrictHostKeyChecking=no pyhton-backend-repo/docker-compose.yml ubuntu@54.158.172.115:/home/ubuntu
+        ssh -i "pem.pem" -o StrictHostKeyChecking=no ubuntu@ec2-54-158-172-115.compute-1.amazonaws.com << EOF
+        sudo docker-compose -f /home/ubuntu/docker-compose.yml up -d 
         EOF
