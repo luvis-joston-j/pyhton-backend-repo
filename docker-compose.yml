@@ -9,7 +9,7 @@ services:
       - app-network
 
   backend:
-    image: luvisjostonj/pyapp-backendend:test
+    image: luvisjostonj/pyapp-backend:test
     container_name: back-end
     ports:
       - "5001:5001"
