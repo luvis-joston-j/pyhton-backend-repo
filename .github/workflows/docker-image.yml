@@ -39,5 +39,5 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -i "pem.pem" -o StrictHostKeyChecking=no ubuntu@ec2-54-158-172-115.compute-1.amazonaws.com<< 'EOF'
-        scp -i "pem.pem" -o StrictHostKeyChecking=no docker-compose.yml ubuntu@54.158.172.115:/root
+        sudo docker-compose -f ~/docker-compose.yml up -d 
         EOF
